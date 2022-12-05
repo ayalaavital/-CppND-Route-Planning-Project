@@ -122,3 +122,11 @@ TEST_F(RoutePlannerTest, TestAStarSearch) {
     EXPECT_FLOAT_EQ(end_node->y, path_end.y);
     EXPECT_FLOAT_EQ(route_planner.GetDistance(), 873.41565);
 }
+
+// Test the CompareNodes struct.
+TEST_F(RoutePlannerTest, TestCompareNodes) {
+    start_node->h_value = route_planner.CalculateHValue(start_node);
+    end_node->h_value = route_planner.CalculateHValue(end_node);
+    EXPECT_EQ(CompareNodes()(start_node, end_node), true);
+    EXPECT_EQ(CompareNodes()(end_node, start_node), false);
+}
