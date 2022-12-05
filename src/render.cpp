@@ -32,6 +32,11 @@ void Render::Display( io2d::output_surface &surface )
     DrawEndPosition(surface);
 }
 
+/*
+ This function when called with the argument taking the surface as defined by the given start and end points
+ traces the shortest route between start point and end point
+*/
+
 void Render::DrawPath(io2d::output_surface &surface) const{
     io2d::render_props aliased{ io2d::antialias::none };
     io2d::brush foreBrush{ io2d::rgba_color::orange}; 
@@ -39,6 +44,10 @@ void Render::DrawPath(io2d::output_surface &surface) const{
     surface.stroke(foreBrush, PathLine(), std::nullopt, io2d::stroke_props{width});
 
 }
+
+/* This function when called with the argument taking the surface as defined by the given start and end points
+marks the end position with the help of red symbol
+*/
 
 void Render::DrawEndPosition(io2d::output_surface &surface) const{
     if (m_Model.path.empty()) return;
@@ -59,6 +68,11 @@ void Render::DrawEndPosition(io2d::output_surface &surface) const{
     surface.fill(foreBrush, pb);
     surface.stroke(foreBrush, io2d::interpreted_path{pb}, std::nullopt, std::nullopt, std::nullopt, aliased);
 }
+
+/*
+This function when called with the argument taking the surface as defined by the given start and end points
+marks the start position with the help of green symbol
+*/
 
 void Render::DrawStartPosition(io2d::output_surface &surface) const{
     if (m_Model.path.empty()) return;

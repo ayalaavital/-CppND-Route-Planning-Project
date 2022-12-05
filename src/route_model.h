@@ -12,15 +12,15 @@ class RouteModel : public Model {
   public:
     class Node : public Model::Node {
       public:
-        Node * parent = nullptr;
+        Node* parent = nullptr;
         float h_value = std::numeric_limits<float>::max();
         float g_value = 0.0;
         bool visited = false;
-        std::vector<Node *> neighbors;
+        std::vector<Node*> neighbors;
 
         void FindNeighbors();
         float distance(Node other) const {
-            return std::sqrt(std::pow((x - other.x), 2) + std::pow((y - other.y), 2));
+            return std::sqrt(std::pow((x - other.x), 2.0) + std::pow((y - other.y), 2.0));
         }
 
         Node(){}
@@ -28,8 +28,8 @@ class RouteModel : public Model {
 
       private:
         int index;
-        Node * FindNeighbor(std::vector<int> node_indices);
-        RouteModel * parent_model = nullptr;
+        Node* FindNeighbor(std::vector<int> node_indices);
+        RouteModel* parent_model = nullptr;
     };
 
     RouteModel(const std::vector<std::byte> &xml);
@@ -39,7 +39,7 @@ class RouteModel : public Model {
     
   private:
     void CreateNodeToRoadHashmap();
-    std::unordered_map<int, std::vector<const Model::Road *>> node_to_road;
+    std::unordered_map<int, std::vector<const Model::Road*>> node_to_road;
     std::vector<Node> m_Nodes;
 
 };
